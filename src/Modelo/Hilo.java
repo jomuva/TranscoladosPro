@@ -13,6 +13,8 @@ import javax.swing.*;
 public class Hilo extends Thread {
    
     public int vidas; //cantidad de vidas
+    
+    
     public int velocidad_tronco; //velocidad a la que se mueve el tronco en el juego
     //Objetos de sonidos
     AudioClip sonido_agua; 
