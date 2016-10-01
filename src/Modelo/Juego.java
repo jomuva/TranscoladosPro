@@ -63,20 +63,20 @@ public class Juego {
         frame.getContentPane().add(motor.carros[1].imagen);
         frame.getContentPane().add(motor.carros[2].imagen);
         frame.getContentPane().add(motor.carros[3].imagen);
-        frame.getContentPane().add(motor.sapo.imagen);
-        frame.getContentPane().add(motor.troncos[0].imagen);
-        frame.getContentPane().add(motor.troncos[1].imagen);
-        frame.getContentPane().add(motor.troncos[2].imagen);
-        frame.getContentPane().add(motor.troncos[3].imagen);
+        frame.getContentPane().add(motor.persona.imagen);
+        frame.getContentPane().add(motor.buses[0].imagen);
+        frame.getContentPane().add(motor.buses[1].imagen);
+        frame.getContentPane().add(motor.buses[2].imagen);
+        frame.getContentPane().add(motor.buses[3].imagen);
         
-        //Agrego el sapo, los fondos de agua y pavimento
+        //Agrego el persona, los fondos de agua y pavimento
         JLabel fondoagua = new JLabel();
         fondoagua.setIcon(new ImageIcon(getClass().getResource("Imagenes/agua.jpg")));
         fondoagua.setBounds(0, 40, 400, 200);
         frame.getContentPane().add(fondoagua);
-        frame.getContentPane().add(motor.sapos_muertos[0]);
-        frame.getContentPane().add(motor.sapos_muertos[1]);
-        frame.getContentPane().add(motor.sapos_muertos[2]);
+        frame.getContentPane().add(motor.personas_muertas[0]);
+        frame.getContentPane().add(motor.personas_muertas[1]);
+        frame.getContentPane().add(motor.personas_muertas[2]);
         JLabel pavimento = new JLabel();
         pavimento.setIcon(new ImageIcon(getClass().getResource("Imagenes/asfalto.jpg")));
         pavimento.setBounds(0, 240, 400, 240);
@@ -144,42 +144,42 @@ public class Juego {
                 /* Comparo la tecla para saber a que direccion mover y lo muevo
                  * siempre y cuando se pueda (no se salga de la pantalla)*/
                 
-                //Muevo el sapo a la izquierda y actualizo su imagen pa la izq
-                if(tecla==37 &&  motor.sapo.X>0) {
+                //Muevo el persona a la izquierda y actualizo su imagen pa la izq
+                if(tecla==37 &&  motor.persona.X>0) {
                     
-                    motor.sapo.izquierda(40);
-                    motor.sapo.establecer_direccion("oeste");
-                    motor.sapo.imagen.setBounds(motor.sapo.X,motor.sapo.Y,40,40);
-                    motor.sapo.imagen.repaint();
-                    
-                }
-                //Muevo el sapo a arriba y actualizo su imagen pa la arriba
-                if(tecla==38 &&  motor.sapo.Y>0) {
-                    
-                    motor.sapo.arriba(40);
-                    motor.sapo.establecer_direccion("norte");
-                    motor.sapo.imagen.setBounds(motor.sapo.X,motor.sapo.Y,40,40);
-                    motor.sapo.imagen.repaint();
+                    motor.persona.izquierda(40);
+                    motor.persona.establecer_direccion("oeste");
+                    motor.persona.imagen.setBounds(motor.persona.X,motor.persona.Y,40,40);
+                    motor.persona.imagen.repaint();
                     
                 }
-                //Muevo el sapo a la derecha y actualizo su imagen pa la derecha
-                if(tecla==39 &&  motor.sapo.X<370) {
+                //Muevo el persona a arriba y actualizo su imagen pa la arriba
+                if(tecla==38 &&  motor.persona.Y>0) {
                     
-                    motor.sapo.derecha(40);
-                    motor.sapo.establecer_direccion("este");
-                    motor.sapo.imagen.setBounds(motor.sapo.X,motor.sapo.Y,40,40);
-                    motor.sapo.imagen.repaint();
+                    motor.persona.arriba(40);
+                    motor.persona.establecer_direccion("norte");
+                    motor.persona.imagen.setBounds(motor.persona.X,motor.persona.Y,40,40);
+                    motor.persona.imagen.repaint();
+                    
+                }
+                //Muevo el persona a la derecha y actualizo su imagen pa la derecha
+                if(tecla==39 &&  motor.persona.X<370) {
+                    
+                    motor.persona.derecha(40);
+                    motor.persona.establecer_direccion("este");
+                    motor.persona.imagen.setBounds(motor.persona.X,motor.persona.Y,40,40);
+                    motor.persona.imagen.repaint();
                     
                 }
                 
                 
-                //Muevo el sapo a abajo y actualizo su imagen pa la abajo
-                if(tecla==40 &&  motor.sapo.Y<440) {
+                //Muevo el persona a abajo y actualizo su imagen pa la abajo
+                if(tecla==40 &&  motor.persona.Y<440) {
                     
-                    motor.sapo.abajo(40);
-                    motor.sapo.establecer_direccion("sur");
-                    motor.sapo.imagen.setBounds(motor.sapo.X,motor.sapo.Y,40,40);
-                    motor.sapo.imagen.repaint();
+                    motor.persona.abajo(40);
+                    motor.persona.establecer_direccion("sur");
+                    motor.persona.imagen.setBounds(motor.persona.X,motor.persona.Y,40,40);
+                    motor.persona.imagen.repaint();
                     
                     
                 }
