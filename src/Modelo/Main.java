@@ -3,7 +3,10 @@ package Modelo;
 //CLase principal del programa
 import javax.swing.JButton;
 import java.awt.event.*;
-
+/**
+ *	@ 
+ *
+ */
 public class Main
 {
    

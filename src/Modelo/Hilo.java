@@ -1,7 +1,6 @@
 package Modelo;
 
-/*Esta es la clase encargada de  mover los troncos, chequear las colisiones, etc.
- *Se podria decir que es el motor del juego
+/*
  */
 import java.applet.Applet;
 import java.applet.AudioClip;
@@ -10,19 +9,28 @@ import java.awt.event.*;
 import java.util.Random;
 
 import javax.swing.*;
+/**
+ 
+ * @author Jonathan Muñoz, Carlos Ortiz, Jefersson Guevara
+ * @version 1.0.0.0
+ * 
+ */
 
 
 public class Hilo extends Thread {
-   
+	/**
+	 * @ Hilo Esta es la clase encargada de  mover los vehiculos y validar las estrelladas etc.
+	 * @param Random Este atributo contiene el numero aleatorio para los mensajes aleatorios
+	 *
+	 */
+	
 	private Random ramdom;
 	private String mensajesConciencia[];
 	private Pantallas nuevaPartida;
     public int vidas; //cantidad de vidas
     public int velocidad_bus; //velocidad a la que se mueve el bus en el juego
-    //Objetos de sonidos
-    AudioClip aplastado;
-    //Objetos que van el juego
-    public Objeto persona;
+    AudioClip aplastado; //Objetos de sonidos
+    public Objeto persona; //Objetos que van el juego
     public Objeto buses[];
     public Objeto carros[];
     //Etiquetas para mostrar la informacion
