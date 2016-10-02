@@ -39,24 +39,17 @@ public class Main
                game.empezar_juego();   //metodo para iniciar juego  
                }
                catch (Exception error){
-                   
                }
-               
            }
-                    
         }
    
 );
       //Muestra instrucciones del juego
         pcarga.Binstrucciones.addMouseListener(new MouseAdapter(){
            public void mouseClicked(MouseEvent e) {
-     
                pcarga.instrucciones();
-               
            }
-                    
         }
-   
 );
     }
 

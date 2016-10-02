@@ -9,26 +9,26 @@ import javax.swing.*;
 
 public class Juego {
     //Ventana del juego
-    public JFrame frame;
+    private JFrame frame;
     //Botones de pausa, reanudar y salir
-    public JButton bpausa;
-    public JButton breiniciar;
-    public JButton bsalir;
+    private JButton bpausa;
+    private JButton breiniciar;
+    private JButton bsalir;
     
     //Hilo con el motor del juego
-    public Hilo motor;
+    private Hilo motor;
     
     //Sonido del salto
     AudioClip sonido;
     
     //Variables de cantidades
-    public int vidas; //vidas
-    public int velocidad_bus; //velocidad de movimiento de los buses
-    boolean inicio;
+    private int vidas; //vidas
+    private int velocidad_bus; //velocidad de movimiento de los buses
+    private boolean inicio;
     
     //Variables para guardar la resolucion
-    int ancho_pantalla;
-    int alto_pantalla;
+    private int ancho_pantalla;
+    private int alto_pantalla;
     
     //Metodo de carga del juego, pido por parametro el nivel de dificultad
     public Juego(int velocidad) {
