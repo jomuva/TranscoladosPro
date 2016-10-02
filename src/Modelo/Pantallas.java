@@ -51,10 +51,10 @@ public class Pantallas extends Frame
         setVisible(false);
         Fmenu.setUndecorated(false);
         Fmenu.getContentPane().setLayout(null);
-        Fmenu.setBounds(10, 10, 220, 90);
+        Fmenu.setBounds(10, 10, 340, 110);
         Fmenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JLabel Ldifi = new JLabel("Seleccione el nivel de dificultad:");
-        Ldifi.setBounds(5, 5, 200, 15);
+        Ldifi.setBounds(70, 5, 200, 15);
         Fmenu.getContentPane().add(Ldifi);
         //Tipo de niveles existentes que se agregaran a la lista de seleccion de dificultad
         String niveles[] = {
@@ -63,15 +63,33 @@ public class Pantallas extends Frame
         
         //Lista de seleccion de nivel
         Cdifi = new JComboBox(niveles);
-        Cdifi.setBounds(5, 20, 200, 20);
+        Cdifi.setBounds(50, 20, 200, 20);
         Fmenu.getContentPane().add(Cdifi);
         
         //Boton de iniciar partida y sus propiedades
         Biniciar = new JButton("Nueva Partida");
-        Biniciar.setBounds(5, 40, 200, 20);
+        Biniciar.setBounds(50, 40, 200, 20);
         Biniciar.setVisible(true);
         Fmenu.getContentPane().add(Biniciar);
         Fmenu.show();
+    }
+    
+    public void gameOver(String Mensaje){
+    	JDialog dialogo = new JDialog();
+        dialogo.getContentPane().setLayout(null);
+        dialogo.setBounds(100, 200, 250, 100);
+        dialogo.show(true);
+        JOptionPane.showMessageDialog(dialogo, "GAME OVER \n  "+Mensaje);
+        dialogo.show(false);	
+    }
+    
+    public void MensajeConciencia(String Mensaje){
+    	JDialog dialogo = new JDialog();
+        dialogo.getContentPane().setLayout(null);
+        dialogo.setBounds(100, 200, 250, 100);
+        dialogo.show(true);
+        JOptionPane.showMessageDialog(dialogo, " ¡"+Mensaje+"!");
+        dialogo.show(false);
     }
 
     //Metodo para retornar el nivel de dificultad escogido por el usuario

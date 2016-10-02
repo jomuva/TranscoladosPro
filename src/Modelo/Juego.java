@@ -23,7 +23,7 @@ public class Juego {
     
     //Variables de cantidades
     public int vidas; //vidas
-    public int velocidad_tronco; //velocidad de movimiento de los troncos
+    public int velocidad_bus; //velocidad de movimiento de los troncos
     boolean inicio;
     
     //Variables para guardar la resolucion
@@ -40,12 +40,12 @@ public class Juego {
         
         //Inicio la cantidad de vidas
         vidas = 3;
-        velocidad_tronco = vel_tronco;
+        velocidad_bus = vel_tronco;
         
         //Cargo el sonido de saltar al objeto 'sonido'
         sonido = Applet.newAudioClip(getClass().getResource("Sonidos/salto.wav"));
         //Inicializo el motor del juego y luego el Frame
-        motor = new Hilo(velocidad_tronco);
+        motor = new Hilo(velocidad_bus);
         frame = new JFrame("Transcolados Pro 2016");
         frame.setResizable(false);
         frame.setBounds(20, 20, 400, 485);
@@ -58,7 +58,7 @@ public class Juego {
     //Metodo para iniciar el juego
     public void empezar_juego()
     throws Exception {
-        //Agrego los carros y troncos al frame 
+        //Agrego los buses y carros al frame 
         frame.getContentPane().add(motor.carros[0].imagen);
         frame.getContentPane().add(motor.carros[1].imagen);
         frame.getContentPane().add(motor.carros[2].imagen);
@@ -69,14 +69,15 @@ public class Juego {
         frame.getContentPane().add(motor.buses[2].imagen);
         frame.getContentPane().add(motor.buses[3].imagen);
         
-        //Agrego el persona, los fondos de agua y pavimento
+        //Agrego la persona, los fondos de agua y pavimento
         JLabel fondoagua = new JLabel();
-        fondoagua.setIcon(new ImageIcon(getClass().getResource("Imagenes/agua.jpg")));
+        fondoagua.setIcon(new ImageIcon(getClass().getResource("Imagenes/asfalto2.jpg")));
         fondoagua.setBounds(0, 40, 400, 200);
-        frame.getContentPane().add(fondoagua);
+        
         frame.getContentPane().add(motor.personas_muertas[0]);
-        frame.getContentPane().add(motor.personas_muertas[1]);
-        frame.getContentPane().add(motor.personas_muertas[2]);
+        frame.getContentPane().add(fondoagua);
+       // frame.getContentPane().add(motor.personas_muertas[1]);
+       // frame.getContentPane().add(motor.personas_muertas[2]);
         JLabel pavimento = new JLabel();
         pavimento.setIcon(new ImageIcon(getClass().getResource("Imagenes/asfalto.jpg")));
         pavimento.setBounds(0, 240, 400, 240);
@@ -125,7 +126,8 @@ public class Juego {
         //Evento de que cuando presionen el boton de Salir se acabe el programa
         bsalir.addMouseListener(new  MouseAdapter(){
             public void mouseClicked(MouseEvent e){
-                System.exit(JFrame.EXIT_ON_CLOSE);
+              //  System.exit(JFrame.EXIT_ON_CLOSE);
+            	frame.show(false);
             }
         });
         
@@ -134,8 +136,6 @@ public class Juego {
             public void keyPressed(KeyEvent e){
                 //variable donde almaceno el codigo de la tecla presionada
                 int tecla = e.getKeyCode();
-                
-                
                      //Si presionaron una tecla de direccion reproduzco sonido
                 if((tecla > 36) && (tecla<41))
                     sonido.play();
@@ -175,13 +175,10 @@ public class Juego {
                 
                 //Muevo el persona a abajo y actualizo su imagen pa la abajo
                 if(tecla==40 &&  motor.persona.Y<440) {
-                    
                     motor.persona.abajo(40);
                     motor.persona.establecer_direccion("sur");
                     motor.persona.imagen.setBounds(motor.persona.X,motor.persona.Y,40,40);
                     motor.persona.imagen.repaint();
-                    
-                    
                 }
                 
            
@@ -191,6 +188,7 @@ public class Juego {
         //Muestro la pantalla del juego e inicio el motor
         frame.show();
         motor.start();
+      
     }
     
     
