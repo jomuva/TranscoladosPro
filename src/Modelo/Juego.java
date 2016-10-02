@@ -71,7 +71,7 @@ public class Juego {
         
         //Agrego la persona, los fondos de agua y pavimento
         JLabel fondoagua = new JLabel();
-        fondoagua.setIcon(new ImageIcon(getClass().getResource("Imagenes/asfalto2.jpg")));
+        fondoagua.setIcon(new ImageIcon(getClass().getResource("Imagenes/Estacion_carriles.jpg")));
         fondoagua.setBounds(0, 40, 400, 200);
         
         frame.getContentPane().add(motor.personas_muertas[0]);
