@@ -10,7 +10,7 @@ public class Pantallas extends Frame
     ImageIcon imagen; //Imagen a mostrar en el fondo
     int ancho_pantalla;
     int alto_pantalla;
-    public JFrame Fmenu,gameOver; //Menu
+    public JFrame Fmenu; //Menu
     //Botones
     public JButton Biniciar; 
     public JButton Bcargar;

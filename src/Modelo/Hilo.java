@@ -136,6 +136,7 @@ public class Hilo extends Thread {
                 	numRam = ramdom.nextInt(4);
                 	System.out.println(numRam);
                 	nuevaPartida.gameOver(mensajesConciencia[numRam]);
+                	
                 	this.stop();
                 	this.destroy();
                 }
@@ -205,6 +206,8 @@ public class Hilo extends Thread {
         dialogo.getContentPane().add(labelwin);
         dialogo.show();
     }
+    
+ 
     
 // Metodo para saber si esta muerto el persona, devuelve true si esta muerto    
     public boolean esta_muerto() {

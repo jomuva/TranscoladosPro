@@ -23,7 +23,7 @@ public class Juego {
     
     //Variables de cantidades
     public int vidas; //vidas
-    public int velocidad_tronco; //velocidad de movimiento de los troncos
+    public int velocidad_bus; //velocidad de movimiento de los troncos
     boolean inicio;
     
     //Variables para guardar la resolucion
@@ -40,12 +40,12 @@ public class Juego {
         
         //Inicio la cantidad de vidas
         vidas = 3;
-        velocidad_tronco = vel_tronco;
+        velocidad_bus = vel_tronco;
         
         //Cargo el sonido de saltar al objeto 'sonido'
         sonido = Applet.newAudioClip(getClass().getResource("Sonidos/salto.wav"));
         //Inicializo el motor del juego y luego el Frame
-        motor = new Hilo(velocidad_tronco);
+        motor = new Hilo(velocidad_bus);
         frame = new JFrame("Transcolados Pro 2016");
         frame.setResizable(false);
         frame.setBounds(20, 20, 400, 485);
