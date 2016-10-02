@@ -28,12 +28,13 @@ public class Main
        //Empieza a mostrar el menu Principal del juego
         pcarga.menu_Principal();
         
+        
      
         //Inicia el juego al hacer clic en el boton de iniciar
         pcarga.Biniciar.addMouseListener(new MouseAdapter(){
            public void mouseClicked(MouseEvent e) {
                //inicio el juego, el contructor pide por parametro la dificultad del juego
-               game = new Juego(pcarga.Cdifi.getSelectedIndex()+1*40); 
+               game = new Juego(pcarga.Cdifi.getSelectedIndex()); 
                try{
                game.empezar_juego();   //metodo para iniciar juego  
                }
@@ -42,6 +43,18 @@ public class Main
                }
                
            }
+                    
+        }
+   
+);
+      //Muestra instrucciones del juego
+        pcarga.Binstrucciones.addMouseListener(new MouseAdapter(){
+           public void mouseClicked(MouseEvent e) {
+     
+               pcarga.instrucciones();
+               
+           }
+                    
         }
    
 );

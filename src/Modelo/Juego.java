@@ -23,7 +23,7 @@ public class Juego {
     
     //Variables de cantidades
     public int vidas; //vidas
-    public int velocidad_bus; //velocidad de movimiento de los troncos
+    public int velocidad_bus; //velocidad de movimiento de los buses
     boolean inicio;
     
     //Variables para guardar la resolucion
@@ -31,7 +31,7 @@ public class Juego {
     int alto_pantalla;
     
     //Metodo de carga del juego, pido por parametro el nivel de dificultad
-    public Juego(int vel_tronco) {
+    public Juego(int velocidad) {
         inicio = false;
         
         //Obtengo la  resolucion del juego
@@ -40,7 +40,14 @@ public class Juego {
         
         //Inicio la cantidad de vidas
         vidas = 3;
-        velocidad_bus = vel_tronco;
+        if(velocidad == 0){
+        	velocidad_bus = velocidad+1*20;
+        }else if (velocidad == 1){
+        	velocidad_bus = velocidad+1*45;
+        }else{
+        	velocidad_bus = velocidad+3*20;
+        }
+       
         
         //Cargo el sonido de saltar al objeto 'sonido'
         sonido = Applet.newAudioClip(getClass().getResource("Sonidos/salto.wav"));
@@ -79,7 +86,7 @@ public class Juego {
        // frame.getContentPane().add(motor.personas_muertas[1]);
        // frame.getContentPane().add(motor.personas_muertas[2]);
         JLabel pavimento = new JLabel();
-        pavimento.setIcon(new ImageIcon(getClass().getResource("Imagenes/asfalto.jpg")));
+        pavimento.setIcon(new ImageIcon(getClass().getResource("Imagenes/carriles_acera.jpg")));
         pavimento.setBounds(0, 240, 400, 240);
         frame.getContentPane().add(motor.LVidas);
         frame.getContentPane().add(pavimento);
