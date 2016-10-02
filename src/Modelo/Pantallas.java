@@ -91,6 +91,15 @@ public class Pantallas extends Frame
         JOptionPane.showMessageDialog(dialogo, " ¡"+Mensaje+"!");
         dialogo.show(false);
     }
+    
+    public void puntaje(int puntaje){
+    	JDialog dialogo = new JDialog();
+        dialogo.getContentPane().setLayout(null);
+        dialogo.setBounds(100, 200, 250, 100);
+        dialogo.show(true);
+        JOptionPane.showMessageDialog(dialogo, "Tu puntaje total es: \n"+puntaje+" puntos");
+        dialogo.show(false);
+    }
 
     //Metodo para retornar el nivel de dificultad escogido por el usuario
     public String obtener_nivel()

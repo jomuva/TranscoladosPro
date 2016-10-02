@@ -12,10 +12,10 @@ public class Objeto {
     public JLabel imagen;
     
     //estas imagenes s�lo se aprovechan para el sapo y son las direcciones del mismo
-    public ImageIcon sapon; //norte
-    public ImageIcon sapos; //sur
-    public ImageIcon sapoe; //este
-    public ImageIcon sapoo; //oeste
+    public ImageIcon personan; //norte
+    public ImageIcon personas; //sur
+    public ImageIcon personae; //este
+    public ImageIcon personao; //oeste
     
     public Objeto(String ruta) {
         //inicializo las coordenadas y la imagene cuya ruta se pide por parametro
@@ -25,15 +25,15 @@ public class Objeto {
     }
     
     //Este es el contructor del sapo
-    public Objeto(String ruta, String sapo1, String sapo2, String sapo3, String sapo4) {
+    public Objeto(String ruta, String persona1, String persona2, String persona3, String persona4) {
          //inicializo las coordenadas y la imagenes de las direcciones del sapo
         X = Y = 0;
         imagen = new JLabel();
         imagen.setIcon(new ImageIcon(getClass().getResource(ruta)));
-        sapon = new ImageIcon(getClass().getResource(sapo1));
-        sapos = new ImageIcon(getClass().getResource(sapo2));
-        sapoe = new ImageIcon(getClass().getResource(sapo3));
-        sapoo = new ImageIcon(getClass().getResource(sapo4));
+        personan = new ImageIcon(getClass().getResource(persona1));
+        personas = new ImageIcon(getClass().getResource(persona2));
+        personae = new ImageIcon(getClass().getResource(persona3));
+        personao = new ImageIcon(getClass().getResource(persona4));
     }
     
     
@@ -58,13 +58,13 @@ public class Objeto {
     //Metodo para decirle que imagen poner segun la direccion que se movi�
     public void establecer_direccion(String dir) {
         if(dir.compareTo("norte") == 0)
-            imagen.setIcon(sapon);
+            imagen.setIcon(personan);
         if(dir.compareTo("sur") == 0)
-            imagen.setIcon(sapos);
+            imagen.setIcon(personas);
         if(dir.compareTo("oeste") == 0)
-            imagen.setIcon(sapoo);
+            imagen.setIcon(personao);
         if(dir.compareTo("este") == 0)
-            imagen.setIcon(sapoe);
+            imagen.setIcon(personae);
     }
     
     

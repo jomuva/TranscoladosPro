@@ -51,7 +51,7 @@ public class Hilo extends Thread {
         /*
          * Inicializo el objeto tipo persona 
          */
-        persona = new Objeto("Imagenes/persona.gif", "Imagenes/persona.gif", "Imagenes/personaaba.gif", "Imagenes/personader.gif", "Imagenes/personaizq.gif");
+        persona = new Objeto("Imagenes/hombre.gif", "Imagenes/hombre.gif", "Imagenes/hombre_regreso.gif", "Imagenes/hombre_der.gif", "Imagenes/hombre_izq.gif");
         persona.establecer_direccion("norte");
         persona.X = 180;
         persona.Y = 440;
@@ -60,7 +60,7 @@ public class Hilo extends Thread {
         for(int i = 0; i < 3; i++) {
             personas_muertas[i] = new JLabel();
             personas_muertas[i].setBounds(0, 520, 40, 40);
-            personas_muertas[i].setIcon(new ImageIcon(getClass().getResource("Imagenes/persona_muerto.png")));
+            personas_muertas[i].setIcon(new ImageIcon(getClass().getResource("Imagenes/hombre_muerto.png")));
         }
         
         
@@ -74,16 +74,16 @@ public class Hilo extends Thread {
         mensajesConciencia[2] = "En la vida real los superheroes no existen";
         mensajesConciencia[3] = "Colarte no hace parte de los deportes Olimpicos, valora tu vida";
      
-        //Inicializo y ubico a los carros y troncos
+        //Inicializo y ubico a los carros y buses
         for(int i = 0; i < 4; i++) {
-            buses[i] = new Objeto("Imagenes/tronco.jpg"); 
+            buses[i] = new Objeto("Imagenes/bus.gif"); 
             buses[i].Y = (i + 1) * 40 + 40;
             if(i % 2 == 0) {
-                carros[i] = new Objeto("Imagenes/carro2.gif");
+                carros[i] = new Objeto("Imagenes/autorojo.gif");
                 buses[i].X = 400 - i * 6;
                 carros[i].X = 400 - i * 8;
             } else {
-                carros[i] = new Objeto("Imagenes/carro.gif");
+                carros[i] = new Objeto("Imagenes/autoazul.gif");
                 buses[i].X = 0 + i * 6;
                 carros[i].X = 400 + i * 7;
             }
@@ -108,7 +108,7 @@ public class Hilo extends Thread {
             //Chequeo si el persona llego a su meta y Gana
             if(persona.Y < 80) {
                 //Le sumo 1000 puntos
-                puntos += 1000;
+                puntos += 2000;
                 //Ubico al persona en el inicio
                 persona.X = 180;
                 persona.Y = 440;
@@ -144,7 +144,7 @@ public class Hilo extends Thread {
                 	numRam = ramdom.nextInt(4);
                 	System.out.println(numRam);
                 	nuevaPartida.gameOver(mensajesConciencia[numRam]);
-                	
+                	nuevaPartida.puntaje(puntos);
                 	this.stop();
                 	this.destroy();
                 }
@@ -184,35 +184,7 @@ public class Hilo extends Thread {
             } catch(Exception e) { }
         } while(true);
         
-        //Creo una ventana con el mensaje
-        JDialog dialogo = new JDialog();
-        dialogo.getContentPane().setLayout(null);
-        dialogo.setTitle("GAME OVER");
-        dialogo.setBounds(30, 200, 250, 100);
-        
-        //Boton de aceptar
-        JButton aceptar = new JButton("Aceptar");
-        aceptar.setBounds(75, 30, 100, 20);
-        
-        //Hago que cuando le den clic al bot�n de aceptar se acabe el programa
-        aceptar.addMouseListener(new  MouseAdapter(){
-            public void mouseClicked(MouseEvent e){
-                System.exit(JDialog.EXIT_ON_CLOSE);
-            }
-        });
-        
-        //Asigno las propiedades a la ventana de "Fin del Juego"
-        dialogo.setDefaultCloseOperation(3);
-        dialogo.setResizable(false);
-        dialogo.getContentPane().add(aceptar);
-        
-        //Publico con cuantos puntos gano
-        JLabel labelwin = new JLabel("Ganaste con un total de " + puntos);
-        labelwin.setBounds(2, 2, 250, 20);
-        
-        //Agrego el mensaje a la ventana de "Fin del Juego"
-        dialogo.getContentPane().add(labelwin);
-        dialogo.show();
+       
     }
     
  
@@ -228,7 +200,7 @@ public class Hilo extends Thread {
             if(persona.Y == carros[i].Y && (persona.X < carros[i].X + 69 && persona.X >= carros[i].X || persona.X + 40 < carros[i].X + 69 && persona.X + 30 >= carros[i].X))
                 return true;
         
-         //Chequeo si se ahoga 
+         //Chequeo si lo mata un transmilenio
         if(persona.Y >= 80 && persona.Y <= 220) {
             for(int i = 0; i < 4; i++)
                 if(persona.Y == (i + 1) * 40 + 40 && persona.X >= buses[i].X - 10 && persona.X <= buses[i].X + 160)
