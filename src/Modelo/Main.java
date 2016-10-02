@@ -25,6 +25,7 @@ public class Main
        //Empieza a mostrar el menu Principal del juego
         pcarga.menu_Principal();
         
+        
      
         //Inicia el juego al hacer clic en el boton de iniciar
         pcarga.Biniciar.addMouseListener(new MouseAdapter(){
