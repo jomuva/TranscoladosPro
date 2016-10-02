@@ -11,34 +11,49 @@ import java.util.Random;
 import javax.swing.*;
 /**
  
- * @author Jonathan Muñoz, Carlos Ortiz, Jefersson Guevara
- * @version 1.0.0.0
- * 
+ * @author Jonathan Jeferson Carlos
+ * @version 1.0.0.1
  */
 
-
-public class Hilo extends Thread {
+ public class Hilo extends Thread {
 	/**
-	 * @ Hilo Esta es la clase encargada de  mover los vehiculos y validar las estrelladas etc.
-	 * @param Random Este atributo contiene el numero aleatorio para los mensajes aleatorios
-	 *
+	 *  determina el numero del mensaje de concientizacion
 	 */
-	
 	private Random ramdom;
+	/**
+	 * mensajesdeconciencia contiene los mensajes que se mostraran en un vector
+	 */
 	private String mensajesConciencia[];
+	/**
+	 * genera una nueva pantalla para una partida nueva
+	 */
 	private Pantallas nuevaPartida;
-    public int vidas; //cantidad de vidas
-    public int velocidad_bus; //velocidad a la que se mueve el bus en el juego
-    AudioClip aplastado; //Objetos de sonidos
-    public Objeto persona; //Objetos que van el juego
-    public Objeto buses[];
-    public Objeto carros[];
-    //Etiquetas para mostrar la informacion
-    public JLabel LVidas;
-    public JLabel personas_muertas[];
-    //Cantidad de puntos en el juego
-    int puntos;
+	/**
+	 * cantidad de vidas para el juego 
+	 */
+	private int vidas; 
+    /**
+     * velocidad a la que se mueve el bus en el juego
+     */
+     private int velocidad_bus; 
+     private AudioClip aplastado; //Objetos de sonidos
+     
+     
+     public JLabel LVidas;
+     public JLabel personas_muertas[];
+     public Objeto persona; //Objetos que van el juego
+     public Objeto buses[];
+     public Objeto carros[];
     
+     //Cantidad de puntos en el juego
+    /**
+     * puntos acumulados
+     */
+    private int puntos;
+/**
+ * El metodo constructor de Hilo recibe la velocidad con la que se moveran los objetos, en el juego    
+ * @param Velocidad: La velocidad de los buses y carros
+ */
     public Hilo(int velocidad) {
         //Inicializo los objetos
         buses = new Objeto[4];
@@ -47,10 +62,9 @@ public class Hilo extends Thread {
         velocidad_bus = velocidad; //velocidad recibida por parametro, + velocidad =  + dificil 
         vidas = 3;
         puntos = 0;
-        
-        /*
-         * Inicializo el objeto tipo persona 
-         */
+       /**
+        * Permite crear la persona con las posibles vistas
+        */
         persona = new Objeto("Imagenes/hombre.gif", "Imagenes/hombre.gif", "Imagenes/hombre_regreso.gif", "Imagenes/hombre_der.gif", "Imagenes/hombre_izq.gif");
         persona.establecer_direccion("norte");
         persona.X = 180;
