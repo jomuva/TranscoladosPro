@@ -7,15 +7,19 @@ import java.applet.Applet;
 import java.applet.AudioClip;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Random;
+
 import javax.swing.*;
 
 
 public class Hilo extends Thread {
    
+	private Random ramdom;
+	private String mensajesConciencia[];
+	private Pantallas nuevaPartida;
     public int vidas; //cantidad de vidas
-    public int velocidad_bus; //velocidad a la que se mueve el tronco en el juego
+    public int velocidad_bus; //velocidad a la que se mueve el bus en el juego
     //Objetos de sonidos
-    AudioClip sonido_agua; 
     AudioClip aplastado;
     //Objetos que van el juego
     public Objeto persona;
@@ -55,6 +59,12 @@ public class Hilo extends Thread {
         //Inicializo los sonidos
         aplastado = Applet.newAudioClip(getClass().getResource("Sonidos/aplastado.wav"));
         
+        //inicializo mensajes concientizacion
+        mensajesConciencia =  new String[4];
+        mensajesConciencia[0] = "Tu vida vale más que el ahorro de un pasaje";
+        mensajesConciencia[1] = "En casa te esperan, valora tu vida";
+        mensajesConciencia[2] = "En la vida real los superheroes no existen";
+        mensajesConciencia[3] = "Colarte no hace parte de los deportes Olimpicos, valora tu vida";
      
         //Inicializo y ubico a los carros y troncos
         for(int i = 0; i < 4; i++) {
@@ -81,6 +91,7 @@ public class Hilo extends Thread {
     }
     
     public void run() {
+    	int numRam;
         do
         {
             //Chequeo si se le acabaron las vidas para terminar el juego
@@ -98,60 +109,51 @@ public class Hilo extends Thread {
                 LVidas.setText(" Vidas: " + (vidas - 1) + " Nivel: " + velocidad_bus / 6 + " Puntos: " + puntos);
             }
             
-            //Chequeo si se muriï¿½
+            //Chequeo si se murio
             if(esta_muerto()) {
                  //Chequeo si fue aplastado por un carro y reproduzco su sonido
-                if(persona.Y >= 240 && persona.Y < 480)
+                if(persona.Y >= 240 && persona.Y < 480 || persona.Y >= 40 && persona.Y <= 220)
                     aplastado.play();
                 
                 //Actualizo la pantalla
                 LVidas.setText(" Vidas: " + (vidas - 1) + " Nivel: " + velocidad_bus / 6 + " Puntos: " + puntos);
                 
-                //Coloco un persona muerto
-                personas_muertas[3 - vidas].setBounds(persona.X, persona.Y, 40, 40);
+                //Coloco un persona muerta
+                personas_muertas[0].setBounds(persona.X, persona.Y, 40, 40);
                 vidas--; //Quito una vida
-                
                
                 
-                //Reubico el spao
+                //Reubico la persona
                 persona.X = 180;
                 persona.Y = 440;
                 persona.imagen.setBounds(persona.X, persona.Y, 40, 40);
                 
                 //Si se quedo sin vidas acabo el juego
-                if(vidas == 0)
-                    break;
+                if(vidas == 0){
+                	//Creo una ventana con el mensaje
+                	nuevaPartida = new Pantallas();
+                	ramdom = new Random();
+                	numRam = ramdom.nextInt(4);
+                	System.out.println(numRam);
+                	nuevaPartida.gameOver(mensajesConciencia[numRam]);
+                	this.stop();
+                	this.destroy();
+                }
+                nuevaPartida = new Pantallas();
+            	ramdom = new Random();
+            	numRam = ramdom.nextInt(4);
+            	nuevaPartida.MensajeConciencia(mensajesConciencia[numRam]);
             }
             
-            //Si el persona se monto en un tronco, hago que se mueva con el tronco a la misma direccion
-            if(persona.Y >= 40 && persona.Y <= 220) {
-                if(persona.Y == 80 && persona.X >= buses[0].X && persona.X <= buses[0].X + 150) {
-                    persona.izquierda(velocidad_bus);
-                    persona.imagen.setBounds(persona.X, persona.Y, 40, 40);
-                }
-                if(persona.Y == 120 && persona.X >= buses[1].X && persona.X < buses[1].X + 150) {
-                    persona.derecha(velocidad_bus);
-                    persona.imagen.setBounds(persona.X, persona.Y, 40, 40);
-                }
-                if(persona.Y == 160 && persona.X >= buses[2].X && persona.X <= buses[2].X + 150) {
-                    persona.izquierda(velocidad_bus);
-                    persona.imagen.setBounds(persona.X, persona.Y, 40, 40);
-                }
-                if(persona.Y == 200 && persona.X >= buses[3].X && persona.X < buses[3].X + 150) {
-                    persona.derecha(velocidad_bus);
-                    persona.imagen.setBounds(persona.X, persona.Y, 40, 40);
-                }
-                persona.imagen.repaint();
-            }
-            
+                  
             //Muevo los 4 Transmilenios
             for(int i = 0; i < 4; i++) {
                 if(i % 2 == 0) {
-                	buses[i].derecha(velocidad_bus);//modif1
+                	buses[i].derecha(velocidad_bus);
                 	if (buses[i].X > 400){
-                    	buses[i].X = -100;
+                    	buses[i].X = -50;
                 	}
-                    carros[i].derecha(velocidad_bus + 3); //modif1
+                    carros[i].derecha(velocidad_bus + 3); 
                     if(carros[i].X  > 400)
                         carros[i].X = -100;
                     buses[i].imagen.setBounds(buses[i].X, buses[i].Y, 150, 40);
@@ -195,7 +197,7 @@ public class Hilo extends Thread {
         dialogo.setResizable(false);
         dialogo.getContentPane().add(aceptar);
         
-        //Publico con cuantos puntos ganï¿½
+        //Publico con cuantos puntos gano
         JLabel labelwin = new JLabel("Ganaste con un total de " + puntos);
         labelwin.setBounds(2, 2, 250, 20);
         
@@ -215,15 +217,15 @@ public class Hilo extends Thread {
             if(persona.Y == carros[i].Y && (persona.X < carros[i].X + 69 && persona.X >= carros[i].X || persona.X + 40 < carros[i].X + 69 && persona.X + 30 >= carros[i].X))
                 return true;
         
-         //Chequeo si se ahoga y reproduzco su sonido
+         //Chequeo si se ahoga 
         if(persona.Y >= 80 && persona.Y <= 220) {
             for(int i = 0; i < 4; i++)
                 if(persona.Y == (i + 1) * 40 + 40 && persona.X >= buses[i].X - 10 && persona.X <= buses[i].X + 160)
-                    return false;
+                    return true;
             
-            return true; //retrono positivo el que se ahogo
+            return false; //retorno positivo el que se ahogo
         } else {
-            return false; //retrono falso porque no se ha muerto
+            return false; 
         }
     }
     
