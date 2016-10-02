@@ -27,8 +27,8 @@ public class Hilo extends Thread {
 	private Random ramdom;
 	private String mensajesConciencia[];
 	private Pantallas nuevaPartida;
-    public int vidas; //cantidad de vidas
-    public int velocidad_bus; //velocidad a la que se mueve el bus en el juego
+	private int vidas; //cantidad de vidas
+	private int velocidad_bus; //velocidad a la que se mueve el bus en el juego
     AudioClip aplastado; //Objetos de sonidos
     public Objeto persona; //Objetos que van el juego
     public Objeto buses[];
@@ -37,7 +37,7 @@ public class Hilo extends Thread {
     public JLabel LVidas;
     public JLabel personas_muertas[];
     //Cantidad de puntos en el juego
-    int puntos;
+    private int puntos;
     
     public Hilo(int velocidad) {
         //Inicializo los objetos
