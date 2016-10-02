@@ -34,7 +34,7 @@ public class Main
         pcarga.Biniciar.addMouseListener(new MouseAdapter(){
            public void mouseClicked(MouseEvent e) {
                //inicio el juego, el contructor pide por parametro la dificultad del juego
-               game = new Juego(pcarga.Cdifi.getSelectedIndex()+1*40); 
+               game = new Juego(pcarga.Cdifi.getSelectedIndex()); 
                try{
                game.empezar_juego();   //metodo para iniciar juego  
                }
@@ -43,6 +43,18 @@ public class Main
                }
                
            }
+                    
+        }
+   
+);
+      //Muestra instrucciones del juego
+        pcarga.Binstrucciones.addMouseListener(new MouseAdapter(){
+           public void mouseClicked(MouseEvent e) {
+     
+               pcarga.instrucciones();
+               
+           }
+                    
         }
    
 );

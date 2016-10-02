@@ -14,7 +14,7 @@ public class Pantallas extends Frame
     //Botones
     public JButton Biniciar; 
     public JButton Bcargar;
-    
+    public JButton Binstrucciones;
     //Lista para escoger los niveles de dificultad
     public JComboBox Cdifi;
     
@@ -51,7 +51,7 @@ public class Pantallas extends Frame
         setVisible(false);
         Fmenu.setUndecorated(false);
         Fmenu.getContentPane().setLayout(null);
-        Fmenu.setBounds(10, 10, 340, 110);
+        Fmenu.setBounds(10, 10, 500, 110);
         Fmenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JLabel Ldifi = new JLabel("Seleccione el nivel de dificultad:");
         Ldifi.setBounds(70, 5, 200, 15);
@@ -71,6 +71,13 @@ public class Pantallas extends Frame
         Biniciar.setBounds(50, 40, 200, 20);
         Biniciar.setVisible(true);
         Fmenu.getContentPane().add(Biniciar);
+        Fmenu.show();
+        
+        //boton Instrucciones
+        Binstrucciones = new JButton("Instrucciones");
+        Binstrucciones.setBounds(260, 30, 200, 20);
+        Binstrucciones.setVisible(true);
+        Fmenu.getContentPane().add(Binstrucciones);
         Fmenu.show();
     }
     
@@ -98,6 +105,16 @@ public class Pantallas extends Frame
         dialogo.setBounds(100, 200, 250, 100);
         dialogo.show(true);
         JOptionPane.showMessageDialog(dialogo, "Tu puntaje total es: \n"+puntaje+" puntos");
+        dialogo.show(false);
+    }
+    
+    public void instrucciones(){
+    	JDialog dialogo = new JDialog();
+        dialogo.getContentPane().setLayout(null);
+        dialogo.setTitle("Instrucciones del juego");
+        dialogo.setBounds(100, 200, 250, 100);
+        dialogo.show(true);
+        JOptionPane.showMessageDialog(dialogo, " 1. Seleccione la difultad del juego \n 2. Con las flechas mueva el personaje animado \n 3. Intente llegar a la estación de Transmilenio que se encuentra en la parte más alta de la pantalla y colarse. \n 4. Tiene 3 vidas de las cuales puede perderlas en caso que lo estrellen los vehículos que hay en la calle. \n 5. Intente realizar el mayor puntaje posible", "Instrucciones de Juego",JOptionPane.INFORMATION_MESSAGE);
         dialogo.show(false);
     }
 

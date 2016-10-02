@@ -51,7 +51,7 @@ public class Hilo extends Thread {
         /*
          * Inicializo el objeto tipo persona 
          */
-        persona = new Objeto("Imagenes/hombre.gif", "Imagenes/hombre.gif", "Imagenes/hombre_regreso.gif", "Imagenes/hombre_der.gif", "Imagenes/hombre_izq.gif");
+        persona = new Objeto("Imagenes/hombreverde.gif", "Imagenes/hombreverde.gif", "Imagenes/hombre_regresoverde.gif", "Imagenes/hombre_derverde.gif", "Imagenes/hombre_izqverde.gif");
         persona.establecer_direccion("norte");
         persona.X = 180;
         persona.Y = 440;
@@ -60,7 +60,7 @@ public class Hilo extends Thread {
         for(int i = 0; i < 3; i++) {
             personas_muertas[i] = new JLabel();
             personas_muertas[i].setBounds(0, 520, 40, 40);
-            personas_muertas[i].setIcon(new ImageIcon(getClass().getResource("Imagenes/hombre_muerto.png")));
+            personas_muertas[i].setIcon(new ImageIcon(getClass().getResource("Imagenes/hombre_muertoverde.png")));
         }
         
         
