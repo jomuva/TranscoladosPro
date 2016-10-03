@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package Modelo;
 
 /*
@@ -9,36 +12,60 @@ import java.awt.event.*;
 import java.util.Random;
 
 import javax.swing.*;
+
 /**
- 
+ * Esta es la clase encargada de  mover los vehiculos y validar las estrelladas etc.
  * @author Jonathan Muñoz, Carlos Ortiz, Jefersson Guevara
  * @version 1.0.0.0
- * 
  */
 
 
 public class Hilo extends Thread {
-	/**
-	 * @ Hilo Esta es la clase encargada de  mover los vehiculos y validar las estrelladas etc.
-	 * @param Random Este atributo contiene el numero aleatorio para los mensajes aleatorios
-	 *
-	 */
+	
+	
 	
 	private Random ramdom;
+	
+	/** Es un vector de String, donde se almacenan los mensajes de conciencia a mostrar */
 	private String mensajesConciencia[];
+	
+	/** Este es un objeto de clase pantallas donde se muestra el menu nueva partida */
 	private Pantallas nuevaPartida;
-	private int vidas; //cantidad de vidas
-	private int velocidad_bus; //velocidad a la que se mueve el bus en el juego
-    AudioClip aplastado; //Objetos de sonidos
-    public Objeto persona; //Objetos que van el juego
+	
+	/** Este numero es el numero de vistas  */
+	private int vidas; 
+	
+	/** Este numero entero determina la velocidad de los vehiculos */
+	private int velocidad_bus; 
+    
+    /** Sonido de clase AudioClio que sonara cada vez que sea estrellada la persona */
+    AudioClip aplastado; 
+    
+    /** Objeto que contendra la persona que se colara */
+    public Objeto persona; 
+    
+    /** Vector de objetos llamado buses */
     public Objeto buses[];
+    
+    /** Vector de objetos llamado carros . */
     public Objeto carros[];
-    //Etiquetas para mostrar la informacion
+    
+    /** Esta etiqueta contiene la informacion de las vidas  */
+    
     public JLabel LVidas;
+    
+    /** Vector de etiquetas personas muertas para determinar cuantos cadaveres debo contar */
     public JLabel personas_muertas[];
-    //Cantidad de puntos en el juego
+    
+    /** Cantidad de puntos en el juego */
+   
     private int puntos;
     
+    /**
+     * Este es el contructor del Hilo
+     *
+     * @param velocidad de acuerdo al nivel de dificultad seleccionado
+     */
     public Hilo(int velocidad) {
         //Inicializo los objetos
         buses = new Objeto[4];
@@ -47,10 +74,6 @@ public class Hilo extends Thread {
         velocidad_bus = velocidad; //velocidad recibida por parametro, + velocidad =  + dificil 
         vidas = 3;
         puntos = 0;
-        
-        /*
-         * Inicializo el objeto tipo persona 
-         */
         persona = new Objeto("Imagenes/hombreverde.gif", "Imagenes/hombreverde.gif", "Imagenes/hombre_regresoverde.gif", "Imagenes/hombre_derverde.gif", "Imagenes/hombre_izqverde.gif");
         persona.establecer_direccion("norte");
         persona.X = 180;
@@ -98,6 +121,9 @@ public class Hilo extends Thread {
         LVidas.setBackground(Color.BLACK);
     }
     
+    /**
+     * Este metodo da ejecucion al hilo
+     */
     public void run() {
     	int numRam;
         do
@@ -189,6 +215,13 @@ public class Hilo extends Thread {
     
  
     
+/**
+ *
+ * Este metodo, valida si debe morir la persona cuando toque un objeto de tipo bus
+ * 
+ *
+ * @return verdadero si lo toco un vehiculo
+ */
 // Metodo para saber si esta muerto el persona, devuelve true si esta muerto    
     public boolean esta_muerto() {
         //Chequeo si un tronco se lo llevo
