@@ -7,30 +7,52 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+/**
+ * Esta es la clase encargada de administrar los elementos del juego
+ * @author Jonathan Muñoz, Carlos Ortiz, Jefersson Guevara
+ * @version 1.0.0.0
+ */
 public class Juego {
-    //Ventana del juego
+    
+    /** Ventana del juego */
+   
     private JFrame frame;
-    //Botones de pausa, reanudar y salir
+    
+    /** Boton de pausa. */
+    //
     private JButton bpausa;
+    
+    /** Boton reiniciar. */
     private JButton breiniciar;
+    
+    /**  Boton salir. */
     private JButton bsalir;
     
-    //Hilo con el motor del juego
+    /** Hilo principal */
     private Hilo motor;
     
-    //Sonido del salto
-    AudioClip sonido;
+    /** Sonido de Salto */
+        AudioClip sonido;
     
-    //Variables de cantidades
+    /** Cantidad de Vidas en el juego */
     private int vidas; //vidas
-    private int velocidad_bus; //velocidad de movimiento de los buses
+    
+    /** velocidad de movimiento de los vehiculos  */
+    private int velocidad_bus; //
+    
+    /** Variable para iniciar el juego */
     private boolean inicio;
     
-    //Variables para guardar la resolucion
+    /** Variable para ancho de la pantalla */
     private int ancho_pantalla;
+    
+    /** Variable para alto de la pantalla */
     private int alto_pantalla;
     
-    //Metodo de carga del juego, pido por parametro el nivel de dificultad
+    /**
+     * Constructor 
+     * @param velocidad velocidad del movimiento de los vehiculos
+     */
     public Juego(int velocidad) {
         inicio = false;
         
@@ -62,7 +84,12 @@ public class Juego {
         frame.setUndecorated(true); //Elimino que sea controlado por el manejador de ventanas
     }
     
-    //Metodo para iniciar el juego
+    /**
+     * 
+     * Con este metodo se agrega todos los elementos al frame, para dar inicio a la interfaz
+     * @throws Exception Esta excepcion controla los errores en el proceso de agregar los elementos al frame
+     */
+    
     public void empezar_juego()
     throws Exception {
         //Agrego los buses y carros al frame 

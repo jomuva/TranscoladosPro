@@ -1,24 +1,53 @@
 package Modelo;
 
-//Clase para manejar las pantallas
+
 import java.awt.*;
 import javax.swing.*;
 
+
+/**
+ * Clase para manejar las pantallas
+ * @author Jonathan Muñoz, Carlos Ortiz, Jefersson Guevara
+ * @version 1.0.0.0
+ */
 public class Pantallas extends Frame
 {
     
-    ImageIcon imagen; //Imagen a mostrar en el fondo
+    /** Imagen a mostrar en el fondo */
+    ImageIcon imagen; 
+    
+    /** El ancho de la pantalla. */
     int ancho_pantalla;
+    
+    /** El alto de pantalla. */
     int alto_pantalla;
+    
+    /** El Jframe para el menu inicial. */
     public JFrame Fmenu; //Menu
+    
+    /** El boton de iniciar */
     //Botones
     public JButton Biniciar; 
+    
+    /** 
+     * El boton de cargar
+     * */
     public JButton Bcargar;
+    
+    /** Boton para mostrar las instrucciones */
     public JButton Binstrucciones;
-    //Lista para escoger los niveles de dificultad
+    
+    /** 
+     * 
+     *   Lista para escoger los niveles de dificultad
+     *   */
+    
     public JComboBox Cdifi;
     
     
+    /**
+     * Constructor de los parametros de las  pantallas.
+     */
     public Pantallas()
     {
         //Aqui obtengo el ancho y alto de la resoluciÃ³n de la pantalla del usuario 
@@ -26,7 +55,10 @@ public class Pantallas extends Frame
         alto_pantalla = Toolkit.getDefaultToolkit().getScreenSize().height;
     }
 
-    //Metodo para crear una Ventana de inicio
+    /**
+     * Metodo para crear una Ventana de inicio.
+     */
+   
     public void carga()
     {
         //Le elimino bordes y que el controlador de ventanas no dibuje la barra de titulo de titulo
@@ -43,7 +75,10 @@ public class Pantallas extends Frame
         add(im);
     }
 
-    //Ventana del menu principal
+    /**
+     * Metodo para cargar el menu principal
+     */
+    
     public void menu_Principal()
     {
         //Propiedades del menu principal
@@ -81,6 +116,11 @@ public class Pantallas extends Frame
         Fmenu.show();
     }
     
+    /**
+     * Game over: Este metodo muestra el mensaje cuando ya ha perdido todas las vidas
+     *
+     * @param Mensaje que se va a mostrar
+     */
     public void gameOver(String Mensaje){
     	JDialog dialogo = new JDialog();
         dialogo.getContentPane().setLayout(null);
@@ -90,6 +130,11 @@ public class Pantallas extends Frame
         dialogo.show(false);	
     }
     
+    /**
+     * Mensaje de Conciencia: Aqui se va a cargar los mensajes de concientizacion para ser mostrados
+     *
+     * @param Mensaje que recibe del juego
+     */
     public void MensajeConciencia(String Mensaje){
     	JDialog dialogo = new JDialog();
         dialogo.getContentPane().setLayout(null);
@@ -99,6 +144,11 @@ public class Pantallas extends Frame
         dialogo.show(false);
     }
     
+    /**
+     * Mensaje de Puntaje final
+     *
+     * @param puntaje que recibe del juego, para se mostrado
+     */
     public void puntaje(int puntaje){
     	JDialog dialogo = new JDialog();
         dialogo.getContentPane().setLayout(null);
@@ -108,6 +158,9 @@ public class Pantallas extends Frame
         dialogo.show(false);
     }
     
+    /**
+     * Instrucciones: Aqui se carga las instrucciones para ser mostradas
+     */
     public void instrucciones(){
     	JDialog dialogo = new JDialog();
         dialogo.getContentPane().setLayout(null);
@@ -118,6 +171,11 @@ public class Pantallas extends Frame
         dialogo.show(false);
     }
 
+    /**
+     * Obtener nivel.
+     *
+     * @return the string
+     */
     //Metodo para retornar el nivel de dificultad escogido por el usuario
     public String obtener_nivel()
     {
