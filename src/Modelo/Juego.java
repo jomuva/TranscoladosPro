@@ -108,10 +108,8 @@ public class Juego {
         fondoagua.setIcon(new ImageIcon(getClass().getResource("Imagenes/Estacion_carriles.jpg")));
         fondoagua.setBounds(0, 40, 400, 200);
         
-        frame.getContentPane().add(motor.personas_muertas[0]);
+        frame.getContentPane().add(motor.personasMuertas[0]);
         frame.getContentPane().add(fondoagua);
-       // frame.getContentPane().add(motor.personas_muertas[1]);
-       // frame.getContentPane().add(motor.personas_muertas[2]);
         JLabel pavimento = new JLabel();
         pavimento.setIcon(new ImageIcon(getClass().getResource("Imagenes/carriles_acera.jpg")));
         pavimento.setBounds(0, 240, 400, 240);
@@ -160,7 +158,6 @@ public class Juego {
         //Evento de que cuando presionen el boton de Salir se acabe el programa
         bsalir.addMouseListener(new  MouseAdapter(){
             public void mouseClicked(MouseEvent e){
-              //  System.exit(JFrame.EXIT_ON_CLOSE);
             	frame.show(false);
             }
         });

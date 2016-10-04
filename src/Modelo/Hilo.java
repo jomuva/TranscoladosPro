@@ -27,7 +27,7 @@ public class Hilo extends Thread {
 	private Random ramdom;
 	
 	/** Es un vector de String, donde se almacenan los mensajes de conciencia a mostrar */
-	private String mensajesConciencia[];
+	private String[] mensajesConciencia;
 	
 	/** Este es un objeto de clase pantallas donde se muestra el menu nueva partida */
 	private Pantallas nuevaPartida;
@@ -36,7 +36,7 @@ public class Hilo extends Thread {
 	private int vidas; 
 	
 	/** Este numero entero determina la velocidad de los vehiculos */
-	private int velocidad_bus; 
+	private int velocidadBus; 
     
     /** Sonido de clase AudioClio que sonara cada vez que sea estrellada la persona */
     AudioClip aplastado; 
@@ -45,17 +45,17 @@ public class Hilo extends Thread {
     public Objeto persona; 
     
     /** Vector de objetos llamado buses */
-    public Objeto buses[];
+    public Objeto[] buses;
     
     /** Vector de objetos llamado carros . */
-    public Objeto carros[];
+    public Objeto[] carros;
     
     /** Esta etiqueta contiene la informacion de las vidas  */
     
     public JLabel LVidas;
     
     /** Vector de etiquetas personas muertas para determinar cuantos cadaveres debo contar */
-    public JLabel personas_muertas[];
+    public JLabel[] personasMuertas;
     
     /** Cantidad de puntos en el juego */
    
@@ -70,8 +70,8 @@ public class Hilo extends Thread {
         //Inicializo los objetos
         buses = new Objeto[4];
         carros = new Objeto[4];
-        personas_muertas = new JLabel[3];
-        velocidad_bus = velocidad; //velocidad recibida por parametro, + velocidad =  + dificil 
+        personasMuertas = new JLabel[3];
+        velocidadBus = velocidad; //velocidad recibida por parametro, + velocidad =  + dificil 
         vidas = 3;
         puntos = 0;
         persona = new Objeto("Imagenes/hombreverde.gif", "Imagenes/hombreverde.gif", "Imagenes/hombre_regresoverde.gif", "Imagenes/hombre_derverde.gif", "Imagenes/hombre_izqverde.gif");
@@ -81,9 +81,9 @@ public class Hilo extends Thread {
         persona.imagen.setBounds(persona.X, persona.Y, 40, 40);
            
         for(int i = 0; i < 3; i++) {
-            personas_muertas[i] = new JLabel();
-            personas_muertas[i].setBounds(0, 520, 40, 40);
-            personas_muertas[i].setIcon(new ImageIcon(getClass().getResource("Imagenes/hombre_muertoverde.png")));
+            personasMuertas[i] = new JLabel();
+            personasMuertas[i].setBounds(0, 520, 40, 40);
+            personasMuertas[i].setIcon(new ImageIcon(getClass().getResource("Imagenes/hombre_muertoverde.png")));
         }
         
         
@@ -116,7 +116,7 @@ public class Hilo extends Thread {
         }
         
         //Muestro la informaci�n en la pantalla
-        LVidas = new JLabel(" Vidas: " + (vidas - 1) + " Nivel: " + velocidad_bus / 6 + " Puntos: " + puntos);
+        LVidas = new JLabel(" Vidas: " + (vidas - 1) + " Nivel: " + velocidadBus / 6 + " Puntos: " + puntos);
         LVidas.setBounds(0, 440, 200, 40);
         LVidas.setBackground(Color.BLACK);
     }
@@ -140,7 +140,7 @@ public class Hilo extends Thread {
                 persona.Y = 440;
                 persona.imagen.setBounds(persona.X, persona.Y, 40, 40);
                 //Actualizo el puntaje en la pantalla
-                LVidas.setText(" Vidas: " + (vidas - 1) + " Nivel: " + velocidad_bus / 6 + " Puntos: " + puntos);
+                LVidas.setText(" Vidas: " + (vidas - 1) + " Nivel: " + velocidadBus / 6 + " Puntos: " + puntos);
             }
             
             //Chequeo si se murio
@@ -150,10 +150,10 @@ public class Hilo extends Thread {
                     aplastado.play();
                 
                 //Actualizo la pantalla
-                LVidas.setText(" Vidas: " + (vidas - 1) + " Nivel: " + velocidad_bus / 6 + " Puntos: " + puntos);
+                LVidas.setText(" Vidas: " + (vidas - 1) + " Nivel: " + velocidadBus / 6 + " Puntos: " + puntos);
                 
                 //Coloco un persona muerta
-                personas_muertas[0].setBounds(persona.X, persona.Y, 40, 40);
+                personasMuertas[0].setBounds(persona.X, persona.Y, 40, 40);
                 vidas--; //Quito una vida
                
                 
@@ -168,7 +168,6 @@ public class Hilo extends Thread {
                 	nuevaPartida = new Pantallas();
                 	ramdom = new Random();
                 	numRam = ramdom.nextInt(4);
-                	System.out.println(numRam);
                 	nuevaPartida.gameOver(mensajesConciencia[numRam]);
                 	nuevaPartida.puntaje(puntos);
                 	this.stop();
@@ -184,21 +183,21 @@ public class Hilo extends Thread {
             //Muevo los 4 Transmilenios
             for(int i = 0; i < 4; i++) {
                 if(i % 2 == 0) {
-                	buses[i].derecha(velocidad_bus);
+                	buses[i].derecha(velocidadBus);
                 	if (buses[i].X > 400){
                     	buses[i].X = -50;
                 	}
-                    carros[i].derecha(velocidad_bus + 3); 
+                    carros[i].derecha(velocidadBus + 3); 
                     if(carros[i].X  > 400)
                         carros[i].X = -100;
                     buses[i].imagen.setBounds(buses[i].X, buses[i].Y, 150, 40);
                     carros[i].imagen.setBounds(carros[i].X, carros[i].Y, 150, 40);
                     continue;
                 }
-                buses[i].derecha(velocidad_bus);
+                buses[i].derecha(velocidadBus);
                 if(buses[i].X > 400)
                 	buses[i].X = -100;
-                carros[i].derecha(velocidad_bus + 3);
+                carros[i].derecha(velocidadBus + 3);
                 if(carros[i].X > 400)
                     carros[i].X = 0;
                 buses[i].imagen.setBounds(buses[i].X, buses[i].Y, 150, 40);
