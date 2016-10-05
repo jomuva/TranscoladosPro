@@ -223,11 +223,11 @@ public class Hilo extends Thread {
  */
 // Metodo para saber si esta muerto el persona, devuelve true si esta muerto    
     public boolean esta_muerto() {
-        //Chequeo si un tronco se lo llevo
+        //Chequeo si un bus se lo llevo
         if((persona.X < 0 || persona.X > 400) && persona.Y >= 80 && persona.Y < 240)
             return true;
         
-        //Chequeo si fue atropellado
+        //Chequeo si fue atropellado por los carros
         for(int i = 0; i < 4; i++)
             if(persona.Y == carros[i].Y && (persona.X < carros[i].X + 69 && persona.X >= carros[i].X || persona.X + 40 < carros[i].X + 69 && persona.X + 30 >= carros[i].X))
                 return true;
@@ -238,7 +238,7 @@ public class Hilo extends Thread {
                 if(persona.Y == (i + 1) * 40 + 40 && persona.X >= buses[i].X - 10 && persona.X <= buses[i].X + 160)
                     return true;
             
-            return false; //retorno positivo el que se ahogo
+            return false; 
         } else {
             return false; 
         }
